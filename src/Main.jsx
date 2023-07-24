@@ -8,6 +8,8 @@ function Main() {
     const [data, setdata] = useState([]);
     const [firstpage, setfirstpage] = useState(1);
     const [perpage, setperpage] = useState(5);
+    const [search, setSearch] = useState('');
+    const keys = ["title", "description", "brand", "category"];
 
     //for fetching data
     const myfetchdata = async (url) => {
@@ -25,19 +27,37 @@ function Main() {
         myfetchdata(url);
     }, []);
 
-    //for pagination
 
-    const indexoflastpage = firstpage * perpage;
-    const indexoffirstpage = indexoflastpage - perpage;
-    const lastdata = data.slice(indexoffirstpage, indexoflastpage);
 
     const x = [];
     for (let i = 1; i < Math.ceil(data.length / perpage); i++) {
         x.push(i);
     }
 
+    //for searching
+
+    const mysearch = (fdata) => {
+
+        return fdata.filter(item => {
+            return (
+                keys.some(i => item[i].toLowerCase().includes(search.toLowerCase()))
+            )
+        })
+
+    }
+    //for pagination
+
+    const indexoflastpage = firstpage * perpage;
+    const indexoffirstpage = indexoflastpage - perpage;
+    const lastdata = mysearch(data).slice(indexoffirstpage, indexoflastpage);
+
+
+
     return (
         <>
+            <div className="d-flex justify-content-center" style={{ marginTop: 20, marginBottom: 10 }}>
+                <input className='rounded-pill form-cortrol' type="search" value={search} onChange={(e) => setSearch(e.target.value)} placeholder='Search....' />
+            </div>
 
             <div>
                 <table className="table table-bordered table-sm table-hover table-striped">
