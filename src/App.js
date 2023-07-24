@@ -1,13 +1,17 @@
+
 import React from 'react';
-import Demo from './demo'
+import Main from './Main';
+
+
+
 
 function App() {
   return (
-    <div><h1 className="text-8xl underline ">Hello world!</h1>
-      <br />
-      <Demo/>
 
-    </div>
+    <>
+      <Main />
+
+    </>
   )
 }
 
