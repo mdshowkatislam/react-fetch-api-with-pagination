@@ -2,10 +2,11 @@ import React from 'react'
 
 function TableShow({ lastdata }) {
     return (
-        <>
-            <table className="table table-bordered table-sm table-hover table-striped">
-                <thead >
-                    <tr>
+        <div>
+
+            <table className="table table-sm table-hover table-bordered " >
+                <thead className="bg-blue ">
+                    <tr className="text-center text-white bg-info">
                         <th>id</th>
                         <th>title</th>
                         <th>description</th>
@@ -19,7 +20,7 @@ function TableShow({ lastdata }) {
                 <tbody>
                     {lastdata.map((item, i) => {
                         return (
-                            <tr>
+                            <tr className="text-center text-info">
                                 <td key={i}>{item.id}</td>
                                 <td key={i}>{item.title}</td>
                                 <td key={i}>{item.description}</td>
@@ -36,7 +37,7 @@ function TableShow({ lastdata }) {
 
                 </tbody>
             </table>
-        </>
+        </div>
     )
 }
 

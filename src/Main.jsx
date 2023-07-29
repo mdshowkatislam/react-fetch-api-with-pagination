@@ -15,13 +15,20 @@ function Main() {
 
     //for fetching data
     const myfetchdata = async (url) => {
-        const fetchdata = await fetch(url).then((x) => x.json()).then((i) => {
+        try {
+            const fetchdata = await fetch(url).then((x) => x.json()).then((i) => {
 
-            if (i.products.length > 0) {
-                setdata(i.products);
+                if (i.products.length > 0) {
+                    setdata(i.products);
+                }
             }
+            );
+
+        } catch (error) {
+            console.log("Error form try catch", error);
+
         }
-        );
+
 
     }
 
